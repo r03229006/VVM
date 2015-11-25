@@ -76,7 +76,7 @@ CONTAINS
          itype       !
 
       DATA ITYPE/3/ !ccwu for topography we don't know how to deal with turbulence yet
-      DATA RNU/0._dbl_kind/,RKD/0.21_dbl_kind/,RKB/0.7_dbl_kind/
+      DATA RNU/100._dbl_kind/,RKD/0.21_dbl_kind/,RKB/0.7_dbl_kind/
 
 !for topography
       INTEGER (KIND=int_kind) ::                &
@@ -328,10 +328,10 @@ CONTAINS
          WQV(I,J) = 0.
   110    CONTINUE
       ELSE
-!         IF ( itt==1 .OR. MOD ( ITT,NSFLUX ) .EQ. 1 ) CALL SFLUX_3D
+!         IF ( itt==1 .OR. MOD ( ITT,NSFLUX ) .EQ. 1 ) CALL SFLUX_3D(ITT)
 !      print*,"before call sflux_3d"
 !      print*,"ITT = ",ITT
-      CALL SFLUX_3D ! call sflux every time step 
+      CALL SFLUX_3D(ITT) ! call sflux every time step 
       END IF
 
 #endif
@@ -801,7 +801,7 @@ CONTAINS
 !-----7---------------------------------------------------------------72
 #if defined (DIFFUSION)
 
-   SUBROUTINE SFLUX_3D
+   SUBROUTINE SFLUX_3D(ITT)
 
 !     Case of TGSPEC=.TRUE.  
 !     Surface layer model: Businger et al. (1971) & Deardorff (1972)
@@ -809,7 +809,7 @@ CONTAINS
 !
 !     OUTPUT : UW,WV,WTH,WQV AT LOWER BOUNDARY
 !
-
+      INTEGER (KIND=int_kind) ,INTENT(IN):: ITT
 ! local variables
       REAL (KIND=dbl_kind) ::    &
          MOLEN
@@ -958,8 +958,12 @@ CONTAINS
       hxu1=INT(hxu(I,J))
       hxv1=INT(hxv(I,J))
 
+! set surface flux equales to initial
+      if (itt .eq. 1)then
       WQV(I,J) = WQ(I,J)*RHOZ(hx1)
       WTH(I,J) = WT(I,J)*RHOZ(hx1)/(CP*PIBAR(hx1))
+      endif
+
 !      WQV(I,J)=0.
 !      WTH(I,J)=0. !turn on momentum drag, not surface fluxes
 
@@ -974,6 +978,8 @@ CONTAINS
       WV(I,J)  = WV(I,J)*RHOZ(hx1)
       endif
   130 CONTINUE
+
+
 
    END SUBROUTINE sflux_3d
 

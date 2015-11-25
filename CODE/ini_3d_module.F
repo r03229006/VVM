@@ -38,27 +38,26 @@ CONTAINS
       integer (kind=int_kind), intent(in) :: itt
 
       INTEGER (KIND=int_kind) :: &
-         RDHOUR  
+         RDHOUR
       INTEGER (KIND=int_kind) :: &
          i, j, k, & ! do loop indices for zonal, meridional and vertical dimensions
          n,    &    ! time level index
          i00, j00, &!
-         IQ,JQ 
+         IQ,JQ
       REAL (KIND=dbl_kind) ::    &
          scaleq=0._dbl_kind, & !
          rkappa,             &
          rkappai,            &
          gamfac, a0, z00, xr, yr, zr, dist,tmp
-      REAL (KIND=dbl_kind), PARAMETER :: th00 = 300._dbl_kind      
-      REAL (KIND=dbl_kind), PARAMETER :: rgas = 287.04     
-      REAL (KIND=dbl_kind), PARAMETER :: rad1 = -2.    
-      REAL (KIND=dbl_kind), PARAMETER :: secday = 86400.    
-      REAL (KIND=dbl_kind) :: pzero = 1000._dbl_kind      
-      REAL (KIND=dbl_kind) :: P_INT(NK2),PI_INT(NK2) 
+      REAL (KIND=dbl_kind), PARAMETER :: th00 = 300._dbl_kind
+      REAL (KIND=dbl_kind), PARAMETER :: rgas = 287.04
+      REAL (KIND=dbl_kind), PARAMETER :: rad1 = -2.
+      REAL (KIND=dbl_kind), PARAMETER :: secday = 86400.
+      REAL (KIND=dbl_kind) :: pzero = 1000._dbl_kind
+      REAL (KIND=dbl_kind) :: P_INT(NK2),PI_INT(NK2)
       REAL (KIND=int_kind) :: temp(NK3)
 
-
-      integer nu1, nt1, k1, k2, it,num
+      integer nu1, nt1, k1, k2, it
       logical lf
       DATA NU1/10000/,NT1/10000/
       REAL(kind=dbl_kind) :: rbcp, t8, p8, qv8, qc8, qi8, dummy, gdzbcp, cpbr, &
@@ -67,67 +66,79 @@ CONTAINS
           ,QCBAR(NK3),QVSBAR(NK3)
       REAL (KIND=dbl_kind) :: ZT1(10000),PI1(10000),TV1(10000),PILOG1(10000)
       REAL (KIND=dbl_kind) :: PQ1(10000),P1(10000),T1(10000),QV1(10000),QC1(10000)
-!mjo forcing 
-      REAL (KIND=real_kind) ::  Q1temp(15,148),Q2temp(15,148)
-      REAL (KIND=dbl_kind) ::  Q1OBS(15,148),Q2OBS(15,148)
+      REAL (KIND=dbl_kind) ::  Q1OBS(10000),Q2OBS(10000)
+      REAL (KIND=dbl_kind) ::  PU1(10000),U1(10000),V1(10000),HEIGHT(10000),sfcp,DELZ,THVAVG,THV(10000)
 
-      REAL (KIND=dbl_kind) :: PU1(10000),U1(10000),HEIGHT(10000),sfcp,DELZ,THVAVG,THV(10000)
+      DELZ=1.
+      sfcp=1017.8
 
-      REAL (KIND=dbl_kind) :: ESW
+      DO K=1,NT1
+      HEIGHT(K)=(K-1)*DELZ
+      ENDDO
 
-       DELZ=1.
-       sfcp=1000.
-       DO K=1,NT1
-       HEIGHT(K)=(K-1)*DELZ
-       ENDDO
-
-!************************************
-!* Kinmen  (2014.03.29 01Z) case    *
-!************************************
-        do k=1,NT1
-        u1(k)=6.
-        enddo
-
-        do k=1,NT1
-        qv1(k)=0.
-        enddo
-
-        do k=1,NT1
-        t1(k)=300. 
-        enddo
-
-        do k=1,nt1
-        t1(k)=t1(k)+2.5e6/1004.5*qc1(k)
-        qv1(k)=qv1(k)-qc1(k)
-        enddo
-
-        do k=1,nt1
-        thv(k)=t1(k)*(1+0.608*qv1(k)-qc1(k))
-        enddo
+      do k=1,NT1
+      u1(k)=0.0
+      v1(k)=0.
+      enddo
 
 
-       PI1(1)=(sfcp/1000.)**(rgas/CP)
-       DO K=2,NT1
-       THVAVG=0.5*(THV(K)+THV(K-1))
-       PI1(K)=PI1(K-1)-GRAV*DELZ/(CP*THVAVG)
-       ENDDO
+      do k=1,NT1
+      if(height(k) .le. 840.) then
+      qv1(k)=9.0
+      else
+      qv1(k)=1.5
+      endif
+      enddo
 
-       DO K=1,nt1
-       p1(k)=exp(cp/rgas*log(pi1(K))+log(1000.))
-       PU1(K)=P1(K)
-       PQ1(K)=P1(K)
-       ENDDO
+      do k=1,NT1
+      qv1(k)=qv1(k)/1000.
+      enddo
 
-       do k=1,nt1
-       t1(k)=t1(k)*pi1(k)
-       enddo
+      do k=1,NT1
+      if(height(k) .le. 840.) then
+      t1(k)=289.0
+      else
+      t1(k)=297.5+(height(k)-840)**(1./3.)
+      endif
+      enddo
+
+      do k=1,nt1
+      if(height(k) .le. 600) then
+      qc1(k)=0.
+      elseif(height(k) .gt. 600 .and. height(k) .le. 840) then
+      qc1(k)=(0.5-0.5*(840.-height(k))/240.)/1000.
+      else
+      qc1(k)=0.
+      endif
+      enddo
+
+      do k=1,nt1
+      t1(k)=t1(k)+2.5e6/1004.5*qc1(k)
+      qv1(k)=qv1(k)-qc1(k)
+      enddo
+
+      do k=1,nt1
+      thv(k)=t1(k)*(1+0.608*qv1(k)-qc1(k))
+      enddo
 
 
+      PI1(1)=(sfcp/1000.)**(rgas/CP)
+      DO K=2,NT1
+      THVAVG=0.5*(THV(K)+THV(K-1))
+      PI1(K)=PI1(K-1)-GRAV*DELZ/(CP*THVAVG)
+      ENDDO
 
-!ccwu turn off  q1q2
-       Q1OBS(:,:)=0.
-       Q2OBS(:,:)=0.
- 
+      DO K=1,nt1
+      p1(k)=exp(cp/rgas*log(pi1(K))+log(1000.))
+      PU1(K)=P1(K)
+      PQ1(K)=P1(K)
+      ENDDO
+
+      do k=1,nt1
+      t1(k)=t1(k)*pi1(k)
+      enddo
+
+
       casename= 'GATE_PHASE_III'
 
       CZ2 = ( DZ - DZ1 ) / ( DZ * ( DOMAIN - DZ ) )
@@ -254,7 +265,7 @@ CONTAINS
       QC8 = 0.D0
       QI8 = 0.D0
       CALL saturation ( 1, 1, K, T8, P8, QV8, QC8, QI8, DUMMY )
- !     QVBAR(K) = QV8
+      QVBAR(K) = QV8
       ES1 = ES ( T(K) )
       QVSBAR(K) = ES1 * 0.622 / ( PBAR(K) - ES1 )
       THBAR(K) = T(K) / PIBAR(K)
@@ -305,38 +316,29 @@ CONTAINS
       RHOW(K)=RHOZ(K)  ! This line added with removal of equivalence in constld
   102 CONTINUE
 
-      DO I=1,148  !whole dynamo period
-
       DO 200 K = 2, NK3
-      IF ( ZT(K) .LT. 12000. ) THEN !ccwu change to 12000 from 15000
-      K1 = INDEXR(PBAR(K)*0.01,15,PQ1,LF) !ccwu change with pq1 accordingly
+      IF ( ZT(K) .LT. 15000. ) THEN
+      K1 = INDEXR(PBAR(K)*0.01,20,PQ1,LF)
       K2 = K1 + 1
-      Q1LS (K,I) =  &
-        FINTRP(1,PBAR(K)*0.01,PQ1(K1),Q1OBS(K1,I),PQ1(K2),Q1OBS(K2,I))
-      Q2LS (K,I) =  &
-        FINTRP(1,PBAR(K)*0.01,PQ1(K1),Q2OBS(K1,I),PQ1(K2),Q2OBS(K2,I))
+      Q1LS (K) =  &
+        FINTRP(1,PBAR(K)*0.01,PQ1(K1),Q1OBS(K1),PQ1(K2),Q1OBS(K2))
+      Q2LS (K) =  &
+        FINTRP(1,PBAR(K)*0.01,PQ1(K1),Q2OBS(K1),PQ1(K2),Q2OBS(K2))
       ELSE
-      Q1LS (K,I) = 0.0
-      Q2LS (K,I) = 0.0
+      Q1LS (K) = 0.0
+      Q2LS (K) = 0.0
       END IF
   200 CONTINUE
-
-      ENDDO
 
 !     CHANGE UNIT FROM K/DAY TO K/S (Q1LS) AND G/G/S (Q2LS) AND MULTIPLY
 !     THEM BY SCALEQ TO GET THE ACTUALLY IMPOSED Q1 & Q2.
 
       IF ( Q1Q2 ) SCALEQ = SCALE
-
-      DO I=1,148
-
       DO 210 K = 1, NK3
-!      Q1LS (K,I) = -1.* SCALEQ * Q1LS (K,I) / PIBAR(K) / SECDAY
-!      Q2LS (K,I) = SCALEQ * Q2LS (K,I) / (GAMFAC * SECDAY)
-      Q1LS(K,I) =0.
-      Q2LS(K,I) =0.
+      Q1LS (K) = -1.* SCALEQ * Q1LS (K) / PIBAR(K) / SECDAY
+      Q2LS (K) = SCALEQ * Q2LS (K) / (GAMFAC * SECDAY)
   210 CONTINUE
-      ENDDO
+
 
 #if !defined (RADCODE)
       DO 212 I = 1, 148
@@ -357,7 +359,7 @@ CONTAINS
       vG(:)   = 0.
 
 !ccwu apply new profiles here
-
+      if (.false.) then
       do k=1,NK3
       if(ZT(k) .le. 840.) then
       QVBAR(k)=9.0/1000.
@@ -388,7 +390,7 @@ CONTAINS
       QVBAR(k)=QVBAR(k)-QCBAR(k)
       T(K)=THBAR(K)*PIBAR(K)
       enddo
-
+      endif
 
 !     OCEAN POINTS
 
@@ -410,7 +412,7 @@ CONTAINS
       WRITE(95,*) 
       WRITE(95,*) '************* LS FORCING **********************'
       WRITE(95,403)
-      WRITE(95,404) (ZT(K),Q1LS(K,I),Q2LS(K,I),K=2,NK2)
+      WRITE(95,404) (ZT(K),Q1LS(K),Q2LS(K),K=2,NK2)
 
 
   401 FORMAT (7X,'Z(m)',2X,'PBAR(mb)',4X,'T(K)',4X,'THBAR(K)',2X,  &
@@ -501,13 +503,15 @@ CONTAINS
       DO 610 J = mjm,mjp
       DO 610 I = mim,mip
       Z3DZ(I,J,K)=0.
-      U3DX(I,J,K)=UG(K)
-      U3DY(I,J,K)=VG(K)
+      U3DX(I,J,K)=7.0
+      U3DY(I,J,K)=-5.5
   610 CONTINUE
 
       DO 660 K = 2, NK1
       DO 660 J = 1, MJ1
       DO 660 I = 1, MI1
+      Z3DX(I,J,K)=(W3D(I,J+1,K)-W3D(I,J,K))/DYNEW &
+                 -(U3DY(I,J,K+1)-U3DY(I,J,K))*FNZ(K)/DZ
       Z3DY(I,J,K)=(W3D(I+1,J,K)-W3D(I,J,K))/DX    &
                  -(U3DX(I,J,K+1)-U3DX(I,J,K))*FNZ(K)/DZ
   660 CONTINUE
@@ -555,9 +559,9 @@ CONTAINS
       VTMN0 = VTMN
       
       IF(itt == 0) CALL UPDATE_TRACER_init
-  
+#if defined (RADCODE)  
       albdo = 0.30
-   
+#endif   
 #if defined (DIFFUSION)
       call turb_3d_ini
 #endif

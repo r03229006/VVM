@@ -238,8 +238,8 @@ CONTAINS
       THBAR(K)=THBAR(K)+THINC(K)
       QVBAR(K)=QVBAR(K)+QVINC(K)
       WLS(K)=WLS(K)+WLSINC(K)
-      Q1LS(K,1)=Q1LS(K,1)+Q1INC(K)
-      Q2LS(K,1)=Q2LS(K,1)+Q2INC(K)
+      Q1LS(K)=Q1LS(K)+Q1INC(K)
+      Q2LS(K)=Q2LS(K)+Q2INC(K)
   100 CONTINUE  
       
       DO 101 K=1,NK2
