@@ -958,11 +958,11 @@ CONTAINS
       hxu1=INT(hxu(I,J))
       hxv1=INT(hxv(I,J))
 
-! set surface flux equales to initial
-      if (itt .eq. 1)then
+!! set surface flux equales to initial
+!      if (itt .eq. 1)then
       WQV(I,J) = WQ(I,J)*RHOZ(hx1)
       WTH(I,J) = WT(I,J)*RHOZ(hx1)/(CP*PIBAR(hx1))
-      endif
+!      endif
 
 !      WQV(I,J)=0.
 !      WTH(I,J)=0. !turn on momentum drag, not surface fluxes
