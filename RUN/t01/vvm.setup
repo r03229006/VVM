@@ -53,8 +53,8 @@ cat definesld.com
 # added domain decomposition variables, without '#define MPI' must both
 #  be 1, total subdomains/processes = product of decomposition variables
 #  - DD 2010.04.12
-sed -e '1,$s/zonal_dimension/24/' \
-    -e '1,$s/merid_dimension/24/' \
+sed -e '1,$s/zonal_dimension/32/' \
+    -e '1,$s/merid_dimension/32/' \
     -e '1,$s/zonal_decomposition/4/' \
     -e '1,$s/merid_decomposition/4/' \
     -e '1,$s/vert_dimension/66/' \
