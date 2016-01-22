@@ -86,7 +86,7 @@ CONTAINS
       if(height(k) .le. 840.) then
       qv1(k)=10.46
       else
-      qv1(k)=4.12-0.37*10e-3*(height(k)-840.)
+      qv1(k)=4.12-0.37e-3*(height(k)-840.)
       endif
       enddo
 
@@ -98,7 +98,7 @@ CONTAINS
       if(height(k) .le. 840.) then
       t1(k)=290.97
       else
-      t1(k)=302.13+5.7*10e-3*(height(k)-840.)
+      t1(k)=302.13+5.7e-3*(height(k)-840.)
       endif
       enddo
 

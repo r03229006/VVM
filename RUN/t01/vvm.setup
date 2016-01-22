@@ -55,7 +55,7 @@ cat definesld.com
 #  - DD 2010.04.12
 sed -e '1,$s/zonal_dimension/32/' \
     -e '1,$s/merid_dimension/32/' \
-    -e '1,$s/zonal_decomposition/2' \
+    -e '1,$s/zonal_decomposition/2/' \
     -e '1,$s/merid_decomposition/2/' \
     -e '1,$s/vert_dimension/66/' \
     -e '1,$s/tracer_dimension/0/' \
