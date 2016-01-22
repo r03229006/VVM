@@ -52,8 +52,9 @@ CONTAINS
       fr1,      &  !F1 constant
       xka          !alpha constant
 
+!     Xiao et al.(2014)
       do  k=1,nk3
-      wbar(k)=-3.75e-6*zt(k)*FNZ(K)/DZ
+      wbar(k)=-1.86e-6*zt(k)*FNZ(K)/DZ
       enddo
 
 

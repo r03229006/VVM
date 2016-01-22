@@ -81,12 +81,12 @@ CONTAINS
       v1(k)=0.
       enddo
 
-
+!  Xiao et al.(2014)
       do k=1,NT1
       if(height(k) .le. 840.) then
-      qv1(k)=9.0
+      qv1(k)=10.46
       else
-      qv1(k)=1.5
+      qv1(k)=4.12-0.37*10e-3*(height(k)-840.)
       endif
       enddo
 
@@ -96,9 +96,9 @@ CONTAINS
 
       do k=1,NT1
       if(height(k) .le. 840.) then
-      t1(k)=289.0
+      t1(k)=290.97
       else
-      t1(k)=297.5+(height(k)-840)**(1./3.)
+      t1(k)=302.13+5.7*10e-3*(height(k)-840.)
       endif
       enddo
 
@@ -154,7 +154,9 @@ CONTAINS
 !      SST = T1(1) * 0.1 + 273.16
 
 !NIC
-       SST = 292.0
+
+!     Xiao et al.(2014)
+       SST = 20.6+273.16
 
 !     TEMPERATURE, MIXING RATIO AND PRESSURE FOR GATE PHASE III MEAN
 !     SOUNDING ( STATION 5 ) FROM ESBENSEN. VALUES ARE GIVEN IN DATA
