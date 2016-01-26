@@ -52,19 +52,19 @@ CONTAINS
       fr1,      &  !F1 constant
       xka          !alpha constant
 
-!     Xiao et al.(2014)
-!      do  k=1,nk3
-!      wbar(k)=-1.86e-6*zt(k)*FNZ(K)/DZ
-!      enddo
+      do  k=1,nk3
+      wbar(k)=-3.75e-6*zt(k)*FNZ(K)/DZ
+      enddo
 
-      do  k=1,66
-      wbar(k)=-1.86e-6*zt(k)*FNZ(K)/DZ
-!      print*,wbar(k)
-      enddo
-      do k=67,nk3
-      wbar(k)=-1.86e-6*2000.*zt(k)*FNZ(k)/DZ
-!      print*,wbar(k)
-      enddo
+!     Xiao et al.(2014)
+!      do  k=1,66
+!      wbar(k)=-1.86e-6*zt(k)*FNZ(K)/DZ
+!!      print*,wbar(k)
+!      enddo
+!      do k=67,nk3
+!      wbar(k)=-1.86e-6*2000.*zt(k)*FNZ(k)/DZ
+!!      print*,wbar(k)
+!      enddo
 
       do k=2,nk2
       do j=1,mj1
