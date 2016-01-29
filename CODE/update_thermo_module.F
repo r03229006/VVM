@@ -62,7 +62,7 @@ CONTAINS
 !      print*,wbar(k),k
       enddo
       do k=67,nk3
-      wbar(k)=-1.86e-6*2000.*zt(k)*FNZ(k)/DZ
+      wbar(k)=-1.86e-6*zt(67)*FNZ(67)/DZ !keep constant at z=2010m (2000m)
 !      print*,wbar(k),k
       enddo
 
