@@ -82,11 +82,12 @@ CONTAINS
       enddo
 
 !  Xiao et al.(2014)
+!  qv1 as DYCOMS-II
       do k=1,NT1
       if(height(k) .le. 840.) then
-      qv1(k)=10.46
+      qv1(k)=9.0
       else
-      qv1(k)=4.12-0.37e-3*(height(k)-840.)
+      qv1(k)=1.5
       endif
       enddo
 
