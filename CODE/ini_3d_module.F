@@ -94,11 +94,12 @@ CONTAINS
       qv1(k)=qv1(k)/1000.
       enddo
 
+! t1 as DYCOMS-II
       do k=1,NT1
       if(height(k) .le. 840.) then
-      t1(k)=290.97
+      t1(k)=289.0
       else
-      t1(k)=302.13+5.7e-3*(height(k)-840.)
+      t1(k)=297.5+(height(k)-840.)**(1./3.)
       endif
       enddo
 
