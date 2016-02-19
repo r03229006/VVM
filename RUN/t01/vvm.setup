@@ -5,7 +5,7 @@
 #--------------------------------------------------------------------- 
 
 set echo  # echoes the commands
-set expname = Xwind-ERA
+set expname = Xwind-ERAh
 
 # hardscrabble configuration
 set subdir = '../..'

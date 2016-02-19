@@ -83,10 +83,10 @@ CONTAINS
 
 !  Xiao et al.(2014)
       do k=1,NT1
-      if(height(k) .le. 840.) then
+      if(height(k) .le. 945.54) then
       qv1(k)=10.46
       else
-      qv1(k)=4.12-0.37e-3*(height(k)-840.)
+      qv1(k)=4.12-0.37e-3*(height(k)-945.54)
       endif
       enddo
 
@@ -95,18 +95,18 @@ CONTAINS
       enddo
 
       do k=1,NT1
-      if(height(k) .le. 840.) then
+      if(height(k) .le. 945.54) then
       t1(k)=290.97
       else
-      t1(k)=302.13+5.7e-3*(height(k)-840.)
+      t1(k)=302.13+5.7e-3*(height(k)-945.54)
       endif
       enddo
 
       do k=1,nt1
       if(height(k) .le. 600) then
       qc1(k)=0.
-      elseif(height(k) .gt. 600 .and. height(k) .le. 840) then
-      qc1(k)=(0.5-0.5*(840.-height(k))/240.)/1000.
+      elseif(height(k) .gt. 600 .and. height(k) .le. 945.54 then
+      qc1(k)=(0.5-0.5*(945.54-height(k))/(945.54-))/1000.
       else
       qc1(k)=0.
       endif
