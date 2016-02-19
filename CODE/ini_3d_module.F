@@ -82,6 +82,7 @@ CONTAINS
       enddo
 
 !  Xiao et al.(2014)
+!ref. cloud top height: 902.52m-945.54m
       do k=1,NT1
       if(height(k) .le. 945.54) then
       qv1(k)=10.46
@@ -103,10 +104,10 @@ CONTAINS
       enddo
 
       do k=1,nt1
-      if(height(k) .le. 600) then
+      if(height(k) .le. 700) then
       qc1(k)=0.
-      elseif(height(k) .gt. 600 .and. height(k) .le. 945.54 then
-      qc1(k)=(0.5-0.5*(945.54-height(k))/(945.54-))/1000.
+      elseif(height(k) .gt. 700 .and. height(k) .le. 945.54 then
+      qc1(k)=(0.4-0.4*(945.54-height(k))/(945.54-700.))/1000.
       else
       qc1(k)=0.
       endif
