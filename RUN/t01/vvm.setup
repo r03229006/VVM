@@ -5,7 +5,7 @@
 #--------------------------------------------------------------------- 
 
 set echo  # echoes the commands
-set expname = XGt
+set expname = Xw0
 
 # hardscrabble configuration
 set subdir = '../..'
