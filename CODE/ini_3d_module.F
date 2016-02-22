@@ -106,7 +106,7 @@ CONTAINS
       do k=1,nt1
       if(height(k) .le. 700) then
       qc1(k)=0.
-      elseif(height(k) .gt. 700 .and. height(k) .le. 945.54 then
+      elseif(height(k) .gt. 700 .and. height(k) .le. 945.54) then
       qc1(k)=(0.4-0.4*(945.54-height(k))/(945.54-700.))/1000.
       else
       qc1(k)=0.
