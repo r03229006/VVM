@@ -5,7 +5,7 @@
 #--------------------------------------------------------------------- 
 
 set echo  # echoes the commands
-set expname = Afix
+set expname = Awind
 
 # hardscrabble configuration
 set subdir = '../..'
