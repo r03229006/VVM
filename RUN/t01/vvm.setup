@@ -5,7 +5,7 @@
 #--------------------------------------------------------------------- 
 
 set echo  # echoes the commands
-set expname = Xwind-ERAh
+set expname = Afix
 
 # hardscrabble configuration
 set subdir = '../..'
@@ -69,7 +69,7 @@ sed -e '1,$s/zonal_dimension/96/' \
 
 # input data
 cat > INPUT << 'END6'
- &INPUT1 NEWRUN=T, ITTADD=129600/
+ &INPUT1 NEWRUN=T, ITTADD=131400/
  &INPUT2 RLAT=24.5 /
  &INPUT3 DX=150.,DYNEW=150.,DZ=30.,DZ1=30.,DT=2,UVTAU=7200,NOTURB=F,NOSFX=F,NSFLUX=6,ALADV=1. /
  &INPUT4 NXS=1,NXSAVG=60,NWR11=1,NFLPRT=1,NRESTART=60 /
