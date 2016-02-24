@@ -891,7 +891,9 @@ CONTAINS
       hx1=INT(hx(I,J))
 
 ! add sst variability with time
+      if (itt .ge. 31)
       TG(I,J)=TG(I,J)+DT/2.*1.8/86400.
+      end if
 
       ES1  = ES ( TG(I,J) )
       QSFC = ES1 * 0.622 / ( PBAR(hx1) - ES1 ) 
