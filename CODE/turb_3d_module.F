@@ -891,7 +891,7 @@ CONTAINS
       hx1=INT(hx(I,J))
 
 ! add sst variability with time
-      if (itt .ge. 31)
+      if (itt .ge. 31) then
       TG(I,J)=TG(I,J)+DT/2.*1.8/86400.
       end if
 
