@@ -5,7 +5,7 @@
 #--------------------------------------------------------------------- 
 
 set echo  # echoes the commands
-set expname = Afix
+set expname = Aqtu
 
 # hardscrabble configuration
 set subdir = '../..'
