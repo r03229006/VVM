@@ -104,10 +104,10 @@ CONTAINS
       enddo
 
       do k=1,nt1
-      if(height(k) .le. 700) then
+      if(height(k) .le. 550) then
       qc1(k)=0.
-      elseif(height(k) .gt. 700 .and. height(k) .le. 945.54) then
-      qc1(k)=(0.4-0.4*(945.54-height(k))/(945.54-700.))/1000.
+      elseif(height(k) .gt. 550 .and. height(k) .le. 945.54) then
+      qc1(k)=(0.4-0.4*(945.54-height(k))/(945.54-50.))/1000.
       else
       qc1(k)=0.
       endif
