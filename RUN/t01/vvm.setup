@@ -5,7 +5,7 @@
 #--------------------------------------------------------------------- 
 
 set echo  # echoes the commands
-set expname = Dss
+set expname = Dss-qt-2
 
 # hardscrabble configuration
 set subdir = '../..'
