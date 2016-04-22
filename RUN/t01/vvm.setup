@@ -5,7 +5,7 @@
 #--------------------------------------------------------------------- 
 
 set echo  # echoes the commands
-set expname = Ass-qt+2
+set expname = Ass-qt+2tec
 
 # hardscrabble configuration
 set subdir = '../..'
