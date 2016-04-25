@@ -5,7 +5,7 @@
 #--------------------------------------------------------------------- 
 
 set echo  # echoes the commands
-set expname = Awind
+set expname = Ast-qt-2
 
 # hardscrabble configuration
 set subdir = '../..'
