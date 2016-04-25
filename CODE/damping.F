@@ -59,7 +59,7 @@ CONTAINS
       IF (CRAD.NE.0.) THEN
 !     Gravity Wave Damping (Rayleigh type)
 !-----------------------------------------
-      DO 700 K = NK2-44, NK2
+      DO 700 K = NK2-64, NK2
       CGR =  CRAD*(ZT(K)-ZT(NK2-65))/(ZT(NK2)-ZT(NK2-65))
 
       DO 702 J = 1, MJ1
