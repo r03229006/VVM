@@ -99,7 +99,7 @@ CONTAINS
       if(height(k) .le. 945.54) then
       t1(k)=290.97
       else
-      t1(k)=302.13+5.7e-3*(height(k)-945.54)
+      t1(k)=297.15+5.7e-3*(height(k)-945.54)
       endif
       enddo
 

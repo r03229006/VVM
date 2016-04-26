@@ -13,7 +13,7 @@
 # Example: make INTEL=true DEBUG=true
 
 set echo  # echoes the commands
-set expname = Ass
+set expname = Ass-te-5
 set subdir = ../../DATA/${expname}
 set datadir = ../../RUNDATA
 set codedir = CODE
@@ -33,7 +33,7 @@ set file = ${subdir}/PARMSLD.f
 set nx = `grep "nsbdm_x = " ${file} |sed 's/, .*$//g' |sed 's/^.*nsbdm_x = //g'`
 set ny = `grep "nsbdm_y = " ${file} |sed 's/, .*$//g' |sed 's/^.*nsbdm_y = //g'`
 @ ntask = $nx * $ny
-@ pth = 12
+@ pth = 4
 @ ppn = $ntask % $pth
 
 while ( $ppn != 0 || $pth  == 0)
@@ -42,7 +42,7 @@ while ( $ppn != 0 || $pth  == 0)
 end
 @ ppn = $ntask / $pth
 
-if ( $pth < 8 || $ppn >= 36) then
+if ( $pth < 4 || $ppn >= 36) then
 echo 'bad cores.'
 exit
 #exit
