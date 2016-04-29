@@ -86,8 +86,8 @@ CONTAINS
       do k=1,NT1
       if(height(k) .le. 945.54) then
       qv1(k)=10.46
-      else if ((height(k).gt.945.54).and.(height(k).le.960.))then
-      qv1(k)=10.46-(10.46-2.12)*((height(k)-945.54)/(960.-945.54))
+      else if ((height(k).gt.945.54).and.(height(k).le.990.))then
+      qv1(k)=10.46-(10.46-2.12)*((height(k)-945.54)/(990.-945.54))
       else
       qv1(k)=4.12-0.37e-3*(height(k)-945.54)
       endif
@@ -100,8 +100,8 @@ CONTAINS
       do k=1,NT1
       if(height(k) .le. 945.54) then
       t1(k)=290.97
-      else if ((height(k).gt.945.54).and.(height(k).le.960.))then
-      t1(k)=290.97+(302.13-290.97)*((height(k)-945.54)/(960.-945.54))
+      else if ((height(k).gt.945.54).and.(height(k).le.990.))then
+      t1(k)=290.97+(302.13-290.97)*((height(k)-945.54)/(990.-945.54))
       else
       t1(k)=302.13+5.7e-3*(height(k)-945.54)
       endif
