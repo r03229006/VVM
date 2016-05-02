@@ -13,7 +13,7 @@
 # Example: make INTEL=true DEBUG=true
 
 set echo  # echoes the commands
-set expname = Ass-te-5
+set expname = te-5-24
 set subdir = ../../DATA/${expname}
 set datadir = ../../RUNDATA
 set codedir = CODE

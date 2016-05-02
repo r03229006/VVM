@@ -158,7 +158,7 @@ CONTAINS
 !NIC
 
 !     Xiao et al.(2014)
-       SST = 20.6+273.16
+       SST = 20.6+273.16+(1.8/24.*25.)
 
 !     TEMPERATURE, MIXING RATIO AND PRESSURE FOR GATE PHASE III MEAN
 !     SOUNDING ( STATION 5 ) FROM ESBENSEN. VALUES ARE GIVEN IN DATA
@@ -452,6 +452,19 @@ CONTAINS
 !*********************************************************
 !     2. SET UP the thermodynamic variables for 3D-frame
 !*********************************************************
+!imput th,qv,qc profile from Ass-te-5, t=751
+
+      open(unit=99,file='../../thqvqc-te.dat',form='unformatted', &
+      status='old',access='direct',recl=NK3)
+      read(99,rec=1) temp
+      THBAR=temp
+      read(99,rec=2) temp
+      QVBAR=temp
+      read(99,rec=3) temp
+      QCBAR=temp
+
+
+
       DO 500 K = 1, NK3
       DO 500 J = mjm,mjp
       DO 500 I = mim,mip
