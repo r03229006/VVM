@@ -81,13 +81,12 @@ CONTAINS
       v1(k)=0.
       enddo
 
-!  Xiao et al.(2014)
-!ref. cloud top height: 902.52m-945.54m
+!  Krueger et al.(1995)
       do k=1,NT1
-      if(height(k) .le. 945.54) then
-      qv1(k)=10.46
+      if(height(k) .le. 920.0) then
+      qv1(k)=10.1
       else
-      qv1(k)=4.12-0.37e-3*(height(k)-945.54)
+      qv1(k)=3.5-0.37e-3*(height(k)-920.0)
       endif
       enddo
 
@@ -96,18 +95,18 @@ CONTAINS
       enddo
 
       do k=1,NT1
-      if(height(k) .le. 945.54) then
-      t1(k)=290.97
+      if(height(k) .le. 920.0) then
+      t1(k)=286.
       else
-      t1(k)=302.13+5.7e-3*(height(k)-945.54)
+      t1(k)=302.2+5.7e-3*(height(k)-920.0)
       endif
       enddo
 
       do k=1,nt1
-      if(height(k) .le. 550) then
+      if(height(k) .le. 320.0) then
       qc1(k)=0.
-      elseif(height(k) .gt. 550 .and. height(k) .le. 945.54) then
-      qc1(k)=(0.4-0.4*(945.54-height(k))/(945.54-550.))/1000.
+      elseif(height(k) .gt. 320.0 .and. height(k) .le. 920.0) then
+      qc1(k)=(1.0-1.0*(920.0-height(k))/(920.0-320.0))/1000.
       else
       qc1(k)=0.
       endif
@@ -157,8 +156,8 @@ CONTAINS
 
 !NIC
 
-!     Xiao et al.(2014)
-       SST = 20.6+273.16
+!     Krueger et al.(1995)
+       SST = 17.04+273.16
 
 !     TEMPERATURE, MIXING RATIO AND PRESSURE FOR GATE PHASE III MEAN
 !     SOUNDING ( STATION 5 ) FROM ESBENSEN. VALUES ARE GIVEN IN DATA
