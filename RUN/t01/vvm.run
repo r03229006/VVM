@@ -42,7 +42,7 @@ while ( $ppn != 0 || $pth  == 0)
 end
 @ ppn = $ntask / $pth
 
-if ( $pth < 8 || $ppn >= 36) then
+if ( $pth < 12 || $ppn >= 36) then
 echo 'bad cores.'
 exit
 #exit
