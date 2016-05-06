@@ -87,7 +87,8 @@ CONTAINS
       if(height(k) .le. 945.54) then
       qv1(k)=10.46
       else
-      qv1(k)=4.12-0.37e-3*(height(k)-945.54)
+! change variable from 0.37 to 0.55
+      qv1(k)=4.12-0.55e-3*(height(k)-945.54)
       endif
       enddo
 
