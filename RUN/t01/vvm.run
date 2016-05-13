@@ -13,7 +13,7 @@
 # Example: make INTEL=true DEBUG=true
 
 set echo  # echoes the commands
-set expname = te-5-24
+set expname = te-5-24-ww
 set subdir = ../../DATA/${expname}
 set datadir = ../../RUNDATA
 set codedir = CODE
@@ -42,7 +42,7 @@ while ( $ppn != 0 || $pth  == 0)
 end
 @ ppn = $ntask / $pth
 
-if ( $pth < 12 || $ppn >= 36) then
+if ( $pth < 8 || $ppn >= 36) then
 echo 'bad cores.'
 exit
 #exit
