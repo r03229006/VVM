@@ -138,7 +138,7 @@ CONTAINS
 
       do k=1,nt1
       t1(k)=t1(k)*pi1(k)
-      PRINT*,k,qv1(k),t1(k)
+!      PRINT*,k,qv1(k),t1(k)
       enddo
 
 
@@ -159,7 +159,7 @@ CONTAINS
 !NIC
 
 !     Xiao et al.(2014)
-       SST = 20.6+273.16
+       SST = 15.2+273.16
 
 !     TEMPERATURE, MIXING RATIO AND PRESSURE FOR GATE PHASE III MEAN
 !     SOUNDING ( STATION 5 ) FROM ESBENSEN. VALUES ARE GIVEN IN DATA
