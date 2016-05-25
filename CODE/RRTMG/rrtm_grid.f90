@@ -37,11 +37,11 @@
       LOGICAL :: &
           ocean = .TRUE., &             ! true = surface is water
           dostatisrad = .FALSE., &      ! true = permits the gathering of statistics
-          doshortwave = .FALSE., &       ! true = do shortwave calculation
+          doshortwave = .TRUE., &       ! true = do shortwave calculation
           dolongwave = .TRUE., &        ! true = do longwave calculation
           doseasons = .FALSE., &        ! true = seasonal cycle in solar radiation
           doperpetual = .FALSE., &      ! true = perpetual sun
-          dosolarconstant = .FALSE., &  ! true = fix solar constant and zenith angle
+          dosolarconstant = .TRUE., &  ! true = fix solar constant and zenith angle
           restart_sep = .FALSE., &      ! true = write separate restart files for subdomains
           initialized = .FALSE., &      ! true = radiation has been initialized
           masterproc = .TRUE.           ! true = MPI rank equals 0
