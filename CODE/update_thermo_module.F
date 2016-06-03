@@ -57,22 +57,27 @@ CONTAINS
 !      wbar(k)=-1.86e-6*zt(k)*FNZ(K)/DZ
 !      enddo
 
-      do  k=1,66
-      wbar(k)=-1.86e-6*zt(k)*FNZ(K)/DZ
-      enddo
-      do k=67,nk3
-      wbar(k)=-1.86e-6*zt(67)*FNZ(67)/DZ !keep constant at z=2010m (2000m)
+! fix sub=0.
+      do k=1,nk3
+      wbar(k) = 0.0
       enddo
 
-      if (itt .ge. 31)then
-        do  k=1,66
-        wbar(k)=(-1.86e-6+1.435e-11*(itt-30))*zt(k)*FNZ(K)/DZ
-        enddo
-        do k=67,nk3
-        wbar(k)=(-1.86e-6+1.435e-11*(itt-30))*zt(67)*FNZ(67)/DZ !keep constant at z=2010m (2000m)
-      enddo
-
-      endif
+!      do  k=1,66
+!      wbar(k)=-1.86e-6*zt(k)*FNZ(K)/DZ
+!      enddo
+!      do k=67,nk3
+!      wbar(k)=-1.86e-6*zt(67)*FNZ(67)/DZ !keep constant at z=2010m (2000m)
+!      enddo
+!
+!      if (itt .ge. 31)then
+!        do  k=1,66
+!        wbar(k)=(-1.86e-6+1.435e-11*(itt-30))*zt(k)*FNZ(K)/DZ
+!        enddo
+!        do k=67,nk3
+!        wbar(k)=(-1.86e-6+1.435e-11*(itt-30))*zt(67)*FNZ(67)/DZ !keep constant at z=2010m (2000m)
+!      enddo
+!
+!      endif
 
 
       do k=2,nk2
