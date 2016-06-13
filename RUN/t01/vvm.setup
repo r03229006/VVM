@@ -5,7 +5,7 @@
 #--------------------------------------------------------------------- 
 
 set echo  # echoes the commands
-set expname = Ass-wor
+set expname = Ass-wor-2SST
 
 # hardscrabble configuration
 set subdir = '../..'
