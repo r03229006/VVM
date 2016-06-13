@@ -480,9 +480,9 @@
           ! day on which the simulation starts (day0) will be
           ! repeated throughout the simulation.
 
-!          dayForSW = float(floor(day0)) + day - float(floor(day))
+          dayForSW = float(floor(day0)) + day - float(floor(day))
 !Let SW fix at simulation starting time.
-          dayForSW = day0
+!          dayForSW = day0
         end if
 
         call shr_orb_decl (dayForSW, eccen, mvelpp, lambm0, obliqr, delta, eccf)
