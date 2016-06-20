@@ -82,13 +82,13 @@ CONTAINS
       enddo
 
 !  Xiao et al.(2014)
-!ref. cloud top height: 902.52m-945.54m
+!ref. cloud top height: 902.52m-1145.54m
       do k=1,NT1
-      if(height(k) .le. 945.54) then
+      if(height(k) .le. 1145.54) then
       qv1(k)=10.46
       else
 ! switch variable from 0.37 to 0.55
-      qv1(k)=4.12-0.55e-3*(height(k)-945.54)
+      qv1(k)=4.12-0.55e-3*(height(k)-1145.54)
       endif
       enddo
 
@@ -97,18 +97,20 @@ CONTAINS
       enddo
 
       do k=1,NT1
-      if(height(k) .le. 945.54) then
+      if(height(k) .le. 745.54) then
       t1(k)=290.97
+      elseif((height(k).ge. 745.54).and.(height(k) .le. 1145.54)) then
+      t1(k)=290.97+((height(k)-745.54)/400.*(302.13-290.97))
       else
-      t1(k)=302.13+5.7e-3*(height(k)-945.54)
+      t1(k)=302.13+5.7e-3*(height(k)-1145.54)
       endif
       enddo
 
       do k=1,nt1
-      if(height(k) .le. 550) then
+      if(height(k) .le. 350) then
       qc1(k)=0.
-      elseif(height(k) .gt. 550 .and. height(k) .le. 945.54) then
-      qc1(k)=(0.4-0.4*(945.54-height(k))/(945.54-550.))/1000.
+      elseif(height(k) .gt. 350 .and. height(k) .le. 1145.54) then
+      qc1(k)=(0.4-0.4*(1145.54-height(k))/(1145.54-350.))/1000.
       else
       qc1(k)=0.
       endif
