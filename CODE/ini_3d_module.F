@@ -86,6 +86,8 @@ CONTAINS
       do k=1,NT1
       if(height(k) .le. 945.54) then
       qv1(k)=10.46
+      elseif((height(k).ge. 945.54).and.(height(k) .le. 1345.54)) then
+      qv1(k)=10.46+((height(k)-945.54)/400.*(4.12-10.46))
       else
 ! switch variable from 0.37 to 0.55
       qv1(k)=4.12-0.55e-3*(height(k)-945.54)
