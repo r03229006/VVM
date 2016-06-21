@@ -82,7 +82,7 @@ CONTAINS
       enddo
 
 !  Xiao et al.(2014)
-!ref. cloud top height: 902.52m-1345.54m
+!ref. cloud top height: 902.52m-945.54m
       do k=1,NT1
       if(height(k) .le. 945.54) then
       qv1(k)=10.46
