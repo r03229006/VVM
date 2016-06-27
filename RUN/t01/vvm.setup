@@ -5,7 +5,7 @@
 #--------------------------------------------------------------------- 
 
 set echo  # echoes the commands
-set expname = Ass-wosr-2pro
+set expname = Cwosr-2pro
 
 # hardscrabble configuration
 set subdir = '../..'
