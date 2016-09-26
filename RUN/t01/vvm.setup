@@ -5,7 +5,7 @@
 #--------------------------------------------------------------------- 
 
 set echo  # echoes the commands
-set expname = Ass
+set expname = kru
 
 # hardscrabble configuration
 set subdir = '../..'
@@ -58,7 +58,7 @@ sed -e '1,$s/zonal_dimension/96/' \
     -e '1,$s/merid_dimension/96/' \
     -e '1,$s/zonal_decomposition/4/' \
     -e '1,$s/merid_decomposition/4/' \
-    -e '1,$s/vert_dimension/135/' \
+    -e '1,$s/vert_dimension/100/' \
     -e '1,$s/tracer_dimension/0/' \
   ../../CODE/cdecks/PARMSLD.F90 > PARMSLD.f90
 
@@ -70,7 +70,7 @@ sed -e '1,$s/zonal_dimension/96/' \
 # input data
 cat > INPUT << 'END6'
  &INPUT1 NEWRUN=T, ITTADD=131400/
- &INPUT2 RLAT=24.5 /
+ &INPUT2 RLAT=37.0 /
  &INPUT3 DX=150.,DYNEW=150.,DZ=30.,DZ1=30.,DT=2,UVTAU=7200,NOTURB=F,NOSFX=F,NSFLUX=6,ALADV=1. /
  &INPUT4 NXS=1,NXSAVG=60,NWR11=1,NFLPRT=1,NRESTART=60 /
  &INPUT5 IX=3182073,ITINIT=10,ITSTOP=20,SCALE=0.,Q1Q2=F,DTRAD=20.,SOLVAR=F, RRTMRC=T/

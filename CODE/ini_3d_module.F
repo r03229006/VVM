@@ -70,7 +70,8 @@ CONTAINS
       REAL (KIND=dbl_kind) ::  PU1(10000),U1(10000),V1(10000),HEIGHT(10000),sfcp,DELZ,THVAVG,THV(10000)
 
       DELZ=1.
-      sfcp=1017.8
+! Krueger et al.(1995)
+      sfcp=1021.0
 
       DO K=1,NT1
       HEIGHT(K)=(K-1)*DELZ
@@ -80,40 +81,42 @@ CONTAINS
       u1(k)=0.0
       v1(k)=0.
       enddo
-
-!  Xiao et al.(2014)
-!ref. cloud top height: 902.52m-945.54m
+! here, qv1 means total water mixing ratio[g/kg].
+!ref. cloud top height: 900.0m, cloud bottom height: 360.0m
       do k=1,NT1
-      if(height(k) .le. 945.54) then
-      qv1(k)=10.46
-      else
-! switch variable from 0.37 to 0.55
-      qv1(k)=4.12-0.55e-3*(height(k)-945.54)
-      endif
+!      if(height(k) .le. 945.54) then
+       if(height(k) .lt. 900.0) then
+       qv1(k)=10.1
+       else
+! ~3.5 g/kg
+       qv1(k)=4.38-0.614e-3*height(k)
+       endif
       enddo
-
       do k=1,NT1
       qv1(k)=qv1(k)/1000.
       enddo
 
+! here, t1 means theta l[K].
       do k=1,NT1
-      if(height(k) .le. 945.54) then
-      t1(k)=290.97
+      if(height(k) .le. 900.0) then
+      t1(k)=290.2-4.72e-3*height(k)
       else
-      t1(k)=302.13+5.7e-3*(height(k)-945.54)
+      t1(k)=302.13+3.4735e-3*height(k)
       endif
       enddo
 
+! qc[g/kg]
       do k=1,nt1
-      if(height(k) .le. 550) then
+      if(height(k) .lt. 360.0) then
       qc1(k)=0.
-      elseif(height(k) .gt. 550 .and. height(k) .le. 945.54) then
-      qc1(k)=(0.4-0.4*(945.54-height(k))/(945.54-550.))/1000.
+      elseif(height(k) .ge. 360.0 .and. height(k) .le. 900.0) then
+      qc1(k)=(1.0-1.0*(900.0-height(k))/(900.0-360.0))/1000.
       else
       qc1(k)=0.
       endif
       enddo
 
+! here, qv1 means water vapor mixing ratio[g/kg]. t1 means theta[K].
       do k=1,nt1
       t1(k)=t1(k)+2.5e6/1004.5*qc1(k)
       qv1(k)=qv1(k)-qc1(k)
@@ -122,7 +125,6 @@ CONTAINS
       do k=1,nt1
       thv(k)=t1(k)*(1+0.608*qv1(k)-qc1(k))
       enddo
-
 
       PI1(1)=(sfcp/1000.)**(rgas/CP)
       DO K=2,NT1
@@ -158,8 +160,8 @@ CONTAINS
 
 !NIC
 
-!     Xiao et al.(2014)
-       SST = 20.6+273.16
+!     Krueger et al.(1995)
+       SST = 290.2
 
 !     TEMPERATURE, MIXING RATIO AND PRESSURE FOR GATE PHASE III MEAN
 !     SOUNDING ( STATION 5 ) FROM ESBENSEN. VALUES ARE GIVEN IN DATA
@@ -509,8 +511,8 @@ CONTAINS
       DO 610 I = mim,mip
       Z3DZ(I,J,K)=0.
 ! ERA-INTERIM reanalysis
-      U3DX(I,J,K)=-2.25
-      U3DY(I,J,K)=-5.69+1.44e-3*height(K)
+      U3DX(I,J,K)=-3.55
+      U3DY(I,J,K)=-6.05+1.44e-3*height(K)
   610 CONTINUE
 
       DO 660 K = 2, NK1
