@@ -89,7 +89,7 @@ CONTAINS
        qv1(k)=10.1
        else
 ! ~3.5 g/kg
-       qv1(k)=4.38-0.614e-3*height(k)
+       qv1(k)=3.5
        endif
       enddo
       do k=1,NT1
@@ -99,9 +99,9 @@ CONTAINS
 ! here, t1 means theta l[K].
       do k=1,NT1
       if(height(k) .le. 900.0) then
-      t1(k)=290.2-4.72e-3*height(k)
+      t1(k)=288.5
       else
-      t1(k)=302.13+3.4735e-3*height(k)
+      t1(k)=302.13+3.47355e-3*height(k)
       endif
       enddo
 
@@ -118,7 +118,7 @@ CONTAINS
 
 ! here, qv1 means water vapor mixing ratio[g/kg]. t1 means theta[K].
       do k=1,nt1
-      t1(k)=t1(k)+2.5e6/1004.5*qc1(k)
+      t1(k)=t1(k)+2.5e6/1004.0*qc1(k)
       qv1(k)=qv1(k)-qc1(k)
       enddo
 
