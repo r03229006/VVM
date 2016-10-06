@@ -1274,6 +1274,7 @@ IMPLICIT NONE
                  QMIX(4) .GT. THRESH .OR. QMIX(5) .GT. THRESH .OR.                   &
                  QMIX(6) .GT. THRESH           
 
+     LMICRO=.False.
     if ( LMICRO ) then
       
         PRESS_mb = pl0(K) * 0.01

@@ -5,7 +5,7 @@
 #--------------------------------------------------------------------- 
 
 set echo  # echoes the commands
-set expname = kru
+set expname = kru-d
 
 # hardscrabble configuration
 set subdir = '../..'
