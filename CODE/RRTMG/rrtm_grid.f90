@@ -37,18 +37,19 @@
       LOGICAL :: &
           ocean = .TRUE., &             ! true = surface is water
           dostatisrad = .FALSE., &      ! true = permits the gathering of statistics
-          doshortwave = .FALSE., &       ! true = do shortwave calculation
+          doshortwave = .TRUE., &       ! true = do shortwave calculation
           dolongwave = .TRUE., &        ! true = do longwave calculation
           doseasons = .FALSE., &        ! true = seasonal cycle in solar radiation
-          doperpetual = .FALSE., &      ! true = perpetual sun
-          dosolarconstant = .FALSE., &  ! true = fix solar constant and zenith angle
+          doperpetual = .TRUE., &      ! true = perpetual sun
+          dosolarconstant = .TRUE., &  ! true = fix solar constant and zenith angle
           restart_sep = .FALSE., &      ! true = write separate restart files for subdomains
           initialized = .FALSE., &      ! true = radiation has been initialized
           masterproc = .TRUE.           ! true = MPI rank equals 0
 
       REAL (KIND=kind_rm), PARAMETER :: &
           solar_constant = 1367., &  ! Solar constant
-          zenith_angle = 60.         ! Solar zenith angle (degrees)
+!          zenith_angle = 60.         ! Solar zenith angle (degrees)
+          zenith_angle = 51.8         ! Solar zenith angle (degrees)
 
 ! case and caseid, used for identifying restart files
       CHARACTER (LEN=40) :: &

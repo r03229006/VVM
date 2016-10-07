@@ -5,7 +5,7 @@
 #--------------------------------------------------------------------- 
 
 set echo  # echoes the commands
-set expname = kru-d
+set expname = kru-a
 
 # hardscrabble configuration
 set subdir = '../..'
@@ -70,7 +70,7 @@ sed -e '1,$s/zonal_dimension/96/' \
 # input data
 cat > INPUT << 'END6'
  &INPUT1 NEWRUN=T, ITTADD=131400/
- &INPUT2 RLAT=37.0 /
+ &INPUT2 RLAT=30.0 /
  &INPUT3 DX=150.,DYNEW=150.,DZ=30.,DZ1=30.,DT=2,UVTAU=7200,NOTURB=F,NOSFX=F,NSFLUX=6,ALADV=1. /
  &INPUT4 NXS=1,NXSAVG=60,NWR11=1,NFLPRT=1,NRESTART=60 /
  &INPUT5 IX=3182073,ITINIT=10,ITSTOP=20,SCALE=0.,Q1Q2=F,DTRAD=20.,SOLVAR=F, RRTMRC=T/
