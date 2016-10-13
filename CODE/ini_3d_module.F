@@ -510,9 +510,8 @@ CONTAINS
       DO 610 J = mjm,mjp
       DO 610 I = mim,mip
       Z3DZ(I,J,K)=0.
-! ERA-INTERIM reanalysis
-      U3DX(I,J,K)=-3.55
-      U3DY(I,J,K)=-6.05+1.44e-3*height(K)
+      U3DX(I,J,K)=0.
+      U3DY(I,J,K)=0.
   610 CONTINUE
 
       DO 660 K = 2, NK1

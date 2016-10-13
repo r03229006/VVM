@@ -855,7 +855,8 @@ CONTAINS
       hxp=INT(hx(I,J))+1
       hx1=INT(hx(I,J))
 
-      SPEEDTP(I,J)=0.5*SQRT((U3DX(I-1,J,hxp)+U3DX(I,J,hxp))**2  &
+!  add speed here to ensure near surface speed.(setting speed*2)
+      SPEEDTP(I,J)=0.5*SQRT(14.+(U3DX(I-1,J,hxp)+U3DX(I,J,hxp))**2  &
                            +(U3DY(I,J-1,hxp)+U3DY(I,J,hxp))**2)
 !      if(hx1 .ge. 2) then
 !      tg(i,j)=thbar(hx1)*pibar(hx1)   !specify the ground temp. at the corresponding level
