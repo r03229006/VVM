@@ -98,8 +98,10 @@ CONTAINS
 
 ! here, t1 means theta l[K].
       do k=1,NT1
-      if(height(k) .le. 900.0) then
+      if(height(k) .le. 360.0) then
       t1(k)=290.2+(288.5-290.2)/360.*height(k)
+      elseif((height(k) .gt. 360) .and. (height(k) .le. 900.))then
+      t1(k)=288.5
       else
       t1(k)=302.13+3.47355e-3*height(k)
       endif
