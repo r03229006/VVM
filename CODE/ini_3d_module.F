@@ -142,7 +142,7 @@ CONTAINS
 
       do k=1,nt1
       t1(k)=t1(k)*pi1(k)
-      PRINT*,k,qv1(k),t1(k)
+!      PRINT*,k,qv1(k),t1(k)
       enddo
 
 
