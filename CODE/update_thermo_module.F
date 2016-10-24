@@ -57,12 +57,13 @@ CONTAINS
 !      wbar(k)=-1.86e-6*zt(k)*FNZ(K)/DZ
 !      enddo
 
-      do  k=1,66
-      wbar(k)=-3.0e-6*zt(k)*FNZ(K)/DZ
+! subsidence var. -3.0e-6 /s day.(5.5e-6 -> 2.5e-6)
+      do  k=1,nk3
+      wbar(k)=(-5.5e-6+(3.0e-6/43200)*(itt-1))*zt(k)*FNZ(K)/DZ
       enddo
-      do k=67,nk3
-      wbar(k)=-3.0e-6*zt(67)*FNZ(67)/DZ !keep constant at z=2010m (2000m)
-      enddo
+!      do k=67,nk3
+!      wbar(k)=-3.0e-6*zt(67)*FNZ(67)/DZ !keep constant at z=2010m (2000m)
+!      enddo
 
 !      if (itt .ge. 31)then
 !        do  k=1,66
