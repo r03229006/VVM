@@ -893,8 +893,9 @@ CONTAINS
 
 ! add sst variability with time
 !      TG(I,J)=TG(I,J)+DT/2.*1.8/86400.
+! SST var. +3.6K/day
       if (itt .ge. 31) then
-      TG(I,J)=TG(I,J)+DT/2.*1.8/86400.
+      TG(I,J)=TG(I,J)+DT/2.*3.6/86400.
       end if
 
       ES1  = ES ( TG(I,J) )
